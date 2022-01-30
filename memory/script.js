@@ -23,6 +23,9 @@ for(let i = 0; i < deck.length; i++) {
 
 errorCounter.innerText = errors;
 
+//Restart button
+restart();
+
 //Defining function flipCard
 function flipCard(event) {
     const card = event.target;

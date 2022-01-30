@@ -1,9 +1,9 @@
 const road = document.querySelectorAll('#grid > div');
 const scoreEl = document.querySelector('#score');
 
-for(let i = 0; i < road.length; i++) {
+/* for(let i = 0; i < road.length; i++) {
     road[i].innerText = i;
-}
+} */
 
 //Keeping in a variable the referrals ---
 // --- to the element containing the duck
@@ -15,6 +15,11 @@ let speed = 200;
 let score = 0;
 
 addPlant();
+
+document.addEventListener('keydown', jump);
+
+//Restart button
+restart();
 
 //Defining addPlant function
 function addPlant() {
@@ -59,5 +64,3 @@ function jump(event) {
         }, 300);
     }
 }
-
-document.addEventListener('keydown', jump);

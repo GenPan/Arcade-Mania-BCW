@@ -9,10 +9,10 @@ for(let i = 0; i < cells.length; i++){
     const cell = cells[i];
 
     cell.addEventListener('click', function(){
-        console.log(`Hai cliccato ${i}`);
+        console.log(`You clicked ${i}`);
         
         if(cellSigns[i]){
-            console.log('Questa cella è già cliccata');
+            console.log('This cell has been clicked');
             return;
         }
 
@@ -33,16 +33,19 @@ for(let i = 0; i < cells.length; i++){
         let hasWon = checkVictory();
 
         if(hasWon){
-            //Diciamo chi ha vinto
-            showAlert(`${sign} ha vinto!`);
+            //Declaring the winner
+            showAlert(`${sign} has won!`);
         }
         else if(turn === 9) {
-            showAlert('Pareggio!');
+            showAlert('Tie!');
         }
     })
 }
 
-//Definisco checkVictory
+//Restart button
+restart();
+
+//Defining checkVictory
 function checkVictory() {
     const winningCombinations = [
         [0,1,2],
@@ -63,7 +66,7 @@ function checkVictory() {
         const c = combination[2];
 
         if(cellSigns[a] && cellSigns[a] === cellSigns[b] && cellSigns[b] === cellSigns[c]) {
-            console.log(`Combinazione vincente:  ${a} ${b} ${c}`);
+            console.log(`Winning combination:  ${a} ${b} ${c}`);
             return true;
         }
     }

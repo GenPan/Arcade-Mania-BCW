@@ -20,7 +20,7 @@ body{
 
 .container{
     width: 600px;
-    border: 1px dashed white;
+    border: 1px white;
 
     display: flex;
     flex-direction: column;
@@ -98,4 +98,12 @@ p{
     padding: 20px;
 
     background-color: var(--accent-color);
+}
+
+button {
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    color: #ffffff;
+    background-color: var(--accent-color);
+    padding: 10px 15px;
 }

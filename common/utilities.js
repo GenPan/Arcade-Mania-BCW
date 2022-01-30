@@ -9,3 +9,11 @@ function showAlert(message) {
 
     gameArea.innerHTML = gameArea.innerHTML + alertMessage;
 }
+
+function restart() {
+    const restartButton = document.getElementById('restart');
+
+    restartButton.addEventListener('click', function() {
+        window.location.reload();
+    });
+}
