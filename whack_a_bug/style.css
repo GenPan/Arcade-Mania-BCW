@@ -1,0 +1,39 @@
+:root {
+    --cell-size: 120px;
+    --cell-gutter: 60px;
+}
+
+#grid {
+    border: 2px #ffffff;
+    width: calc(var(--cell-size) * 3 + var(--cell-gutter));
+    height: calc(var(--cell-size) * 3 + var(--cell-gutter));
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+.cell {
+    height: var(--cell-size);
+    width: var(--cell-size);
+    background-color: #ffffff;
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    cursor: pointer;
+}
+
+.bug {
+    background-image: url(./images/bug.png);
+}
+
+.splat {
+    background-image: url(./images/bug-splat.png);
+}
+
+h3 {
+    margin-bottom: 2px;
+}
