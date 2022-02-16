@@ -1,9 +1,11 @@
 const grid = document.querySelector('#grid');
+const scoreEl = document.querySelector('#score');
 
 const size = 15;
 //rxc ---> row * colums
 const rxc = size * size;
 const cells = [];
+const speed = 400;
 
 const aliens = [
      0,  1,  2,  3,  4,  5,  6,  7,  8,  9,
@@ -12,17 +14,37 @@ const aliens = [
 
 const aliensKilled = [];
 let alienMoveIntVal = null;
+let score = 0;
+scoreEl.innerText = score;
+
+let step = 1;
+let direction = 'forward';
 
 //Building grid cells
 for(let i = 0; i < rxc; i++) {
     const cell = document.createElement('div');
-    cell.innerText = i;
+    //cell.innerText = i;
     cells.push(cell);
     grid.appendChild(cell);
 }
 
+drawAliens();
+
+alienMoveIntVal = setInterval(moveAliens, speed);
+
+//Spaceship
+let spaceshipIndex = 217;
+cells[spaceshipIndex].classList.add('spaceship');
+
+document.addEventListener('keydown', moveSpaceship);
+document.addEventListener('keydown', shoot);
+
+//Restart button
+restart();
+
+//-----DECLARING FUNCTIONS-----
 function checkForHumanWin() {
-    if(aliensKilled.lenght === aliens.length) {
+    if(aliensKilled.length === aliens.length) {
         showAlert('Human Wins!');
         clearInterval(alienMoveIntVal);
     }
@@ -31,17 +53,12 @@ function checkForHumanWin() {
 function checkForAliensWin() {
     for(let i = 0; i < aliens.length; i++) {
         if(!aliensKilled.includes(aliens[i]) && aliens[i] >= spaceshipIndex) {
-
+            showAlert('Aliens Win!');
+            clearInterval(alienMoveIntVal);
         }
     }
 }
 
-let step = 1;
-let direction = 'forward';
-
-//setInterval(moveAliens, 500);
-
-//Declaring functions
 function drawAliens() {
     for(let i = 0; i < aliens.length; i++) {
         if(!aliensKilled.includes(i)) {
@@ -76,7 +93,7 @@ function moveAliens() {
     if(direction === 'backward' && leftEdge) {
         for(let i = 0; i < aliens.length; i++) {
             //Go down a line
-            aliens[i] = aliens[i] + size + 1;
+            aliens[i] = aliens[i] + size - 1;
             //Change movement direction
             step = 1;
             //Change direction
@@ -91,13 +108,6 @@ function moveAliens() {
     checkForAliensWin();
     drawAliens();
 }
-
-drawAliens();
-
-
-//Spaceship
-let spaceshipIndex = 217;
-cells[spaceshipIndex].classList.add('spaceship');
 
 function moveSpaceship(event) {
     const leftEdge = spaceshipIndex % size === 0;
@@ -116,8 +126,6 @@ function moveSpaceship(event) {
 
     cells[spaceshipIndex].classList.add('spaceship');
 }
-
-document.addEventListener('keydown', moveSpaceship);
 
 //Shooting
 function shoot(event) {
@@ -144,7 +152,13 @@ function shoot(event) {
             }, 200);
 
             const killed = aliens.indexOf(laserIndex);
-            aliensKilled.push
+            aliensKilled.push(killed);
+
+            //Updating score
+            score++;
+            scoreEl.innerText = score;
+
+            checkForHumanWin();
 
             return;
         }

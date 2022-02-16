@@ -21,17 +21,17 @@
 }
 
 .alien {
-    background-image: url(./images/alien.png);
+    background-image: url('./images/alien.png');
 }
 
 .spaceship {
-    background-image: url(./images/spaceship.png);
+    background-image: url('./images/spaceship.png');
 }
 
 .laser {
-    background-image: url(./images/laser.png);
+    background-image: url('./images/laser.png');
 }
 
 .boom {
-    background-image: url(./images/boom.png);
+    background-image: url('./images/boom.png');
 }
